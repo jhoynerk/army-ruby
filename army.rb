@@ -1,5 +1,5 @@
 class Army
-  attr_accessor :gold, :civilization, :units
+  attr_accessor :gold, :civilization, :units, :battles
 
   def initialize(civilization)
     @civilization = civilization
@@ -19,7 +19,16 @@ class Army
     #units.max_points(quantity).destroy
   end
 
+  def attack(army)
+    BattleManager.new(self, army)
+    register_battle(army)
+  end
+
   private
+    def register_battle(army, results_battle)
+      # coding
+    end
+
     def setting
       @civilization.unit_settings.each do |setting|
         (1..setting.unit_quantity).each do

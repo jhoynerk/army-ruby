@@ -1,7 +1,9 @@
-class Battle < ActiveRecord::Base
+class Battle
 
-  belongs_to :loser, class_name: 'Army'
-  belongs_to :winner, class_name: 'Army'
+  attr_accessor :winner_army, :loser_army, :date
 
-  attr_accessor :points_win, :winner_id, :loser_id, :date
+  def initialize(winner, loser)
+    @winner_army = winner
+    @loser_army = loser
+  end
 end

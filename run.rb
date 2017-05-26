@@ -1,8 +1,12 @@
 require_relative 'army'
-require_relative 'unit_setting'
-require_relative 'unit'
-require_relative 'unit_type'
+require_relative 'battle'
+require_relative 'battle_manager'
 require_relative 'civilization'
+require_relative 'gold_manager'
+require_relative 'unit'
+require_relative 'unit_setting'
+require_relative 'unit_trainer'
+require_relative 'unit_type'
 
 
 =begin
@@ -58,3 +62,5 @@ p army_ingleses.total_points
 p "BIZANTINOS PUNTOS "* 2
 p army_bizantinos.total_points
 
+
+p "BATALLA" * 2
