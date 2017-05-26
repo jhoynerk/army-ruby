@@ -1,6 +1,23 @@
-class UnitType < ActiveRecord::Base
-  belongs_to :civilization
-  has_many :units
+class UnitType
+  attr_accessor :name, :points, :training_points, :training_cost, :units, :civilization
 
-  attr_accessor :name, :points, :training_cost, :training_points
+  def initialize(name, points, training_points, training_cost)
+    @name = name
+    @points = points
+    @training_cost = training_cost
+    @training_points = training_points
+  end
+
+  def add_unit(unit)
+    @units << unit
+  end
+
+  def remove_unit(unit)
+    @units - unit
+  end
+
+  def civilization(civilization)
+    @civilization = civilization
+  end
+
 end

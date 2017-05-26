@@ -1,13 +1,17 @@
-class Unit < ActiveRecord::Base
-  belongs_to :type_unit
-  belongs_to :army
+class Unit
+  attr_accessor :level_training, :current_points, :unit_type, :army
 
-  before_save :calculate_points
+  def initialize(army, unit_type)
+    @unit_type = unit_type
+    @army = army
+    @level_training = 0
+    calculate_points
+  end
 
-  scope :total_points {}
-  scope :max_points -> (quantity) {}
 
-  attr_accessor :level_training, :current_points
+#  scope :total_points {}
+#  scope :max_points -> (quantity) {}
+
 
   def sum_level(level)
     self.level_training += level
@@ -15,6 +19,6 @@ class Unit < ActiveRecord::Base
   end
 
   def calculate_points
-    self.current_points = type_unit.points + ( type_unit.training_points * level_training )
+    self.current_points = @unit_type.points + ( @unit_type.training_points * level_training )
   end
 end

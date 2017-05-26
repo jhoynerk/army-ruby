@@ -1,7 +1,8 @@
 class UnitSetting
-  belongs_to :civilization
-  belogns_to :unit_type
+  attr_accessor :unit_quantity, :unit_type
 
-  attr_accessor :default_count_unit
-
+  def initialize(unit_quantity, unit_type)
+    @unit_quantity = unit_quantity
+    @unit_type = unit_type
+  end
 end

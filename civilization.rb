@@ -1,7 +1,10 @@
-class Civilization < ActiveRecord::Base
-  has_many :unit_types
-  has_many :unit_settings
-  has_many :armies
+class Civilization
+  attr_accessor :name, :unit_settings, :armies
 
-  attr_accessor :name
+  def initialize(name, unit_settings, armies = nil)
+    @name = name
+    @unit_settings = unit_settings
+    @armies = armies
+  end
+
 end
