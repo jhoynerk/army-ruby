@@ -22,6 +22,7 @@ class BattleManager
         subtract_unit(@defender, rand(0..2))
         sum_money_army(@attacker, rand(10..50))
         sum_money_army(@defender, rand(10..50))
+        @results_battle = Battle.new( @attacker, @defender, true)
       end
     end
 

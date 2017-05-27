@@ -28,11 +28,11 @@ class Army
   end
 
   def winner_battle
-    @battles.inject(0){ |sum, b| sum + 1 if b.winner_army == self }
+    @battles.inject(0){ |sum, b| sum + 1 if b.wars_won == self }
   end
 
   def loser_battle
-    @battles.inject(0){ |sum, b| sum + 1 if b.loser_army == self }
+    @battles.inject(0){ |sum, b| sum + 1 if b.wars_lost == self }
   end
 
   private
