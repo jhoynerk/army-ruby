@@ -19,7 +19,7 @@ class BattleManager
         results_battle(@defender, @attacker)
       elsif draw?
         subtract_unit(@attacker, rand(0..2))
-        subtract_unit(@attacker, rand(0..2))
+        subtract_unit(@defender, rand(0..2))
         sum_money_army(@attacker, rand(10..50))
         sum_money_army(@defender, rand(10..50))
       end

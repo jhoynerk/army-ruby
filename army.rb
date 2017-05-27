@@ -9,9 +9,6 @@ class Army
     setting
   end
 
-#  has_many :winner_battle, class_name: 'Battle', foreign_key: 'winner_id'
-#  has_many :loser_battle, class_name: 'Battle', foreign_key: 'loser_id'
-
   def total_points
     units.inject(0){ |sum,u| sum + u.current_points }
   end
