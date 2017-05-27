@@ -9,10 +9,10 @@ class GoldManager
   end
 
   def subtract(gold)
-    @army.gold - gold if available(gold)
+    @army.gold = @army.gold - gold if available(gold)
   end
 
   def sum(gold)
-    @army.gold + gold if available(gold)
+    @army.gold = @army.gold + gold if available(gold)
   end
 end

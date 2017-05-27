@@ -9,41 +9,54 @@ require_relative 'unit_trainer'
 require_relative 'unit_type'
 
 
+menu_option = {
+                'Seleccionar una civilización' => { 1 => 'Chinos', 2 => 'Ingleses', 3 => 'Bizantinos' },
+                'Que civilización quieres atacas?' => { 1 => 'Chinos', 2 => 'Ingleses', 3 => 'Bizantinos' }
+              }
+
+unit_option = {
+                piquero: { points: 5, training_points: 3, training_cost: 10 },
+                arquero: { points: 10, training_points: 7, training_cost:  20 },
+                caballero: { points: 20, training_points: 10, training_cost:  30 }
+              }
+
+unit_defaults =
+              {
+                chinos: { piquero: 2, arquero: 25, caballero: 2 },
+                ingleses: { piquero: 10, arquero: 10, caballero: 10 },
+                bizantinos: { piquero: 5, arquero: 8, caballero: 15 }
+              }
+
+array_unit_types = {}
+unit_option.each do |key, v|
+  array_unit_types[key] = UnitType.new( key.to_s, v[:points], v[:training_points], v[:training_cost] )
+end
+
+units_civilization = {}
+unit_defaults.each do |key, v|
+  units_civilization[key] = v.map { |k, count| UnitSetting.new(count, array_unit_types[k]) }
+end
+
+civilizations = {}
+units_civilization.each do |key, defaults|
+  civilizations[key] = Civilization.new(key.to_s, defaults)
+end
+
+
+p civilizations
+#chinos = Civilization.new('Chinos', default_chinos)
+#ingleses = Civilization.new('Ingleses', default_ingleses)
+#bizantinos = Civilization.new('Bizantinos', default_bizantinos)
+
 =begin
-  piquero 5 points, 3 training points, 10 training cost
-  arquero 10 points, 7 training points, 20 training cost
-  caballero 20 points, 10 training points, 30 training cost
+menu_option.each do |key, value|
+  p key
+  p value
+  option = gets.chomp
+end
+
 =end
 
-piquero = UnitType.new( 'Piquero', 5, 3, 10 )
-arquero = UnitType.new( 'Arquero', 10, 7, 20 )
-caballero = UnitType.new( 'Caballero', 20, 10, 30 )
-
-=begin
-  chinos 2 25 2
-  ingleses 10 10 10
-  bizantinos 5 8 15
-=end
-default_chinos = []
-default_chinos << UnitSetting.new( 2, piquero)
-default_chinos << UnitSetting.new( 25, arquero)
-default_chinos << UnitSetting.new( 2, caballero)
-
-chinos = Civilization.new('Chinos', default_chinos)
-
-default_ingleses = []
-default_ingleses << UnitSetting.new( 10, piquero)
-default_ingleses << UnitSetting.new( 10, arquero)
-default_ingleses << UnitSetting.new( 10, caballero)
-
-ingleses = Civilization.new('Ingleses', default_ingleses)
-
-default_bizantinos = []
-default_bizantinos << UnitSetting.new( 5, piquero)
-default_bizantinos << UnitSetting.new( 8, arquero)
-default_bizantinos << UnitSetting.new( 15, caballero)
-
-bizantinos = Civilization.new('Bizantinos', default_bizantinos)
 
 
 #p chinos.unit_settings
@@ -51,9 +64,9 @@ bizantinos = Civilization.new('Bizantinos', default_bizantinos)
 #p bizantinos.unit_settings
 
 
-army_chinos = Army.new(chinos)
-army_ingleses = Army.new(ingleses)
-army_bizantinos = Army.new(bizantinos)
+army_chinos = Army.new(civilizations[:chinos])
+army_ingleses = Army.new(civilizations[:ingleses])
+army_bizantinos = Army.new(civilizations[:bizantinos])
 #p army
 p "CHINOS PUNTOS "* 2
 p army_chinos.gold
@@ -70,3 +83,6 @@ army_chinos.attack(army_bizantinos)
 
 p army_chinos.loser_battle
 p army_bizantinos.winner_battle
+p army_bizantinos.gold
+p army_chinos.gold
+
