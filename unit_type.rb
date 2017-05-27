@@ -13,7 +13,7 @@ class UnitType
   end
 
   def remove_unit(unit)
-    @units - unit
+    @units.drop(unit)
   end
 
   def civilization(civilization)

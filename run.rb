@@ -56,11 +56,17 @@ army_ingleses = Army.new(ingleses)
 army_bizantinos = Army.new(bizantinos)
 #p army
 p "CHINOS PUNTOS "* 2
-p army_chinos.total_points
+p army_chinos.gold
 p "INGLESES PUNTOS "* 2
 p army_ingleses.total_points
 p "BIZANTINOS PUNTOS "* 2
-p army_bizantinos.total_points
+p army_bizantinos.gold
 
 
 p "BATALLA" * 2
+
+
+army_chinos.attack(army_bizantinos)
+
+p army_chinos.loser_battle
+p army_bizantinos.winner_battle

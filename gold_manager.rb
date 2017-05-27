@@ -1,7 +1,7 @@
 class GoldManager
 
   def initialize(army)
-    @army = @army
+    @army = army
   end
 
   def available(gold)

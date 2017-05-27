@@ -4,6 +4,7 @@ class Army
   def initialize(civilization)
     @civilization = civilization
     @units = []
+    @battles = []
     default_ammount
     setting
   end
@@ -15,19 +16,29 @@ class Army
     units.inject(0){ |sum,u| sum + u.current_points }
   end
 
-  def greater_subtract_unit(quantity)
+  def greater_subtract_unit( quantity )
     #units.max_points(quantity).destroy
   end
 
-  def attack(army)
-    BattleManager.new(self, army)
-    register_battle(army)
+  def attack( army )
+    results = BattleManager.new(self, army).battle
+    register_battle(results)
+    army.register_battle(results)
+  end
+
+  def register_battle( battle )
+    @battles << battle
+  end
+
+  def winner_battle
+    @battles.inject(0){ |sum, b| sum + 1 if b.winner_army == self }
+  end
+
+  def loser_battle
+    @battles.inject(0){ |sum, b| sum + 1 if b.loser_army == self }
   end
 
   private
-    def register_battle(army, results_battle)
-      # coding
-    end
 
     def setting
       @civilization.unit_settings.each do |setting|
@@ -38,6 +49,6 @@ class Army
     end
 
     def default_ammount
-      self.gold = 1000
+      @gold = 1000
     end
 end
