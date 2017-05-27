@@ -11,7 +11,7 @@ require_relative 'army_manager'
 
 menu_option = {
                 'Seleccionar una civilización' => { 1 => 'Chinos', 2 => 'Ingleses', 3 => 'Bizantinos' },
-                'Que civilización quieres atacas?' => { 1 => 'Chinos', 2 => 'Ingleses', 3 => 'Bizantinos' }
+                'Que civilización quieres atacar?' => { 1 => 'Chinos', 2 => 'Ingleses', 3 => 'Bizantinos' }
               }
 
 =begin
@@ -20,13 +20,7 @@ menu_option.each do |key, value|
   p value
   option = gets.chomp
 end
-
 =end
-
-
-#army_chinos = Army.new(civilizations[:chinos])
-#army_ingleses = Army.new(civilizations[:ingleses])
-#army_bizantinos = Army.new(civilizations[:bizantinos])
 
 
 army_chinos = ArmyManager.new.create_chinese
