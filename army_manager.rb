@@ -8,23 +8,23 @@ class ArmyManager
   KNIGHT = 'knight'
 
   UNIT_OPTION = {
-                  "#{ArmyManager::PIKEMAN}": { points: 5, training_points: 3, training_cost: 10, transformation_cost: 30, transformation: ArmyManager::ARCHER },
+                  "#{ArmyManager::KNIGHT}": { points: 20, training_points: 10, training_cost:  30, transformation_cost: nil, transformation: nil },
                   "#{ArmyManager::ARCHER}": { points: 10, training_points: 7, training_cost:  20, transformation_cost: 40, transformation: ArmyManager::KNIGHT },
-                  "#{ArmyManager::KNIGHT}": { points: 20, training_points: 10, training_cost:  30, transformation_cost: nil, transformation: nil }
+                  "#{ArmyManager::PIKEMAN}": { points: 5, training_points: 3, training_cost: 10, transformation_cost: 30, transformation: ArmyManager::ARCHER }
                 }
 
   UNIT_DEFAULTS =
                 {
-                  "#{ArmyManager::CHINESES}": { piquero: 2, arquero: 25, caballero: 2 },
-                  "#{ArmyManager::ENGLISHS}": { piquero: 10, arquero: 10, caballero: 10 },
-                  "#{ArmyManager::BYZANTINES}": { piquero: 5, arquero: 8, caballero: 15 }
+                  "#{ArmyManager::CHINESES}": { "#{ArmyManager::PIKEMAN}": 2, "#{ArmyManager::ARCHER}": 25, "#{ArmyManager::KNIGHT}": 2 },
+                  "#{ArmyManager::ENGLISHS}": { "#{ArmyManager::PIKEMAN}": 10, "#{ArmyManager::ARCHER}": 10, "#{ArmyManager::KNIGHT}": 10 },
+                  "#{ArmyManager::BYZANTINES}": { "#{ArmyManager::PIKEMAN}": 5, "#{ArmyManager::ARCHER}": 8, "#{ArmyManager::KNIGHT}": 15 }
                 }
 
 
   def initialize
     @array_unit_types = {}
     ArmyManager::UNIT_OPTION.each do |key, v|
-      @array_unit_types[key] = UnitType.new( key.to_s, v[:points], v[:training_points], v[:training_cost], v[:transformation_cost], v[:transformation] )
+      @array_unit_types[key] = UnitType.new( key, v[:points], v[:training_points], v[:training_cost], v[:transformation_cost], verify_transformation(v) )
     end
   end
 
@@ -51,5 +51,9 @@ class ArmyManager
 
     def create_civilization(civilization)
       Civilization.new( civilization , settings(civilization))
+    end
+
+    def verify_transformation(v)
+      ( v[:transformation].nil? ) ? nil : @array_unit_types[v[:transformation].to_sym]
     end
 end

@@ -9,43 +9,27 @@ require_relative 'unit_trainer'
 require_relative 'unit_type'
 require_relative 'army_manager'
 require_relative 'emulator'
-menu_option = {
-                'Seleccionar una civilización' => { 1 => 'chinese', 2 => 'english', 3 => 'byzantine' },
-              }
 
+emulator = Emulator.new
+emulator.select_your_civilization
+emulator.print_screen
 
-#'Que civilización quieres atacar?' => { 1 => 'Chinos', 2 => 'Ingleses', 3 => 'Bizantinos' }
-menu_option.each do |key, value|
-  p key
-  p value
+begin
+
+  emulator.select_attack_civilization
+  emulator.print_screen(emulator.armies.last)
+  p "BATALLA # # " * 3
+  emulator.my_army.attack(emulator.armies.last)
+  emulator.print_space
+  p "Resultados * * " * 3
+  emulator.print_screen(emulator.my_army)
+  emulator.print_screen(emulator.armies.last)
+
+  p "Volver a luchar?"
+  p "1. si"
+  p "2. no"
   option = gets.chomp
-  @army = ArmyManager.new.send("create_#{value[option.to_i]}")
-end
-
-Emulator.new.print_screen(@army)
-
-menu_option = {
-                'Que civilización quieres atacar?' => { 1 => 'chinese', 2 => 'english', 3 => 'byzantine' }
-              }
-
-menu_option.each do |key, value|
-  p key
-  p value
-  option = gets.chomp
-  @army_to_attack = ArmyManager.new.send("create_#{value[option.to_i]}")
-end
+end until option == "2"
 
 
-Emulator.new.print_screen(@army_to_attack)
-
-
-p "BATALLA # # " * 3
-@army.attack(@army_to_attack)
-p ""
-p ""
-p ""
-p "Resultados * * " * 3
-
-Emulator.new.print_screen(@army)
-Emulator.new.print_screen(@army_to_attack)
 
