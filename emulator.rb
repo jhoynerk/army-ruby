@@ -60,7 +60,7 @@ class Emulator
         p "Se va a transformar tu: #{unit.unit_type.name} con puntos #{unit.current_points} y nivel #{unit.level_training} por un costo de #{unit.unit_type.transformation_cost}"
         p "Tu oro: #{@my_army.gold}"
         unit = UnitTransformation.new(@my_army).transformation(unit)
-        p "Se va a transformar tu: #{unit.unit_type.name} con puntos #{unit.current_points} y nivel #{unit.level_training}"
+        p "Se va transformo a: #{unit.unit_type.name} con puntos #{unit.current_points} y nivel #{unit.level_training}"
         p "Tu oro: #{@my_army.gold}"
       else
         p "No tienes mas #{Emulator::SELECT_OPTION_UNIT[option.to_i]}"
