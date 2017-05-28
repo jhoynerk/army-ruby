@@ -3,11 +3,14 @@ class ArmyManager
   CHINESES = 'chineses'
   ENGLISHS = 'englishs'
   BYZANTINES = 'byzantines'
+  PIKEMAN = 'pikeman'
+  ARCHER = 'archer'
+  KNIGHT = 'knight'
 
   UNIT_OPTION = {
-                  piquero: { points: 5, training_points: 3, training_cost: 10 },
-                  arquero: { points: 10, training_points: 7, training_cost:  20 },
-                  caballero: { points: 20, training_points: 10, training_cost:  30 }
+                  "#{ArmyManager::PIKEMAN}": { points: 5, training_points: 3, training_cost: 10, transformation_cost: 30, transformation: ArmyManager::ARCHER },
+                  "#{ArmyManager::ARCHER}": { points: 10, training_points: 7, training_cost:  20, transformation_cost: 40, transformation: ArmyManager::KNIGHT },
+                  "#{ArmyManager::KNIGHT}": { points: 20, training_points: 10, training_cost:  30, transformation_cost: nil, transformation: nil }
                 }
 
   UNIT_DEFAULTS =
@@ -21,7 +24,7 @@ class ArmyManager
   def initialize
     @array_unit_types = {}
     ArmyManager::UNIT_OPTION.each do |key, v|
-      @array_unit_types[key] = UnitType.new( key.to_s, v[:points], v[:training_points], v[:training_cost] )
+      @array_unit_types[key] = UnitType.new( key.to_s, v[:points], v[:training_points], v[:training_cost], v[:transformation_cost], v[:transformation] )
     end
   end
 
