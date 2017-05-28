@@ -21,7 +21,7 @@ class Army
   end
 
   def attack( army )
-    results = BattleManager.new(self, army).battle
+    results = BattleManager.new(self, army).war.results_battle
     register_battle(results)
     army.register_battle(results)
   end
