@@ -13,7 +13,7 @@ class UnitTransformation
   def transformation_unit
     if @manager.available?(@unit_type.transformation_cost)
       @unit.unit_transformation(@unit_type.transformation)
-      @manager.subtract(@unit_type.training_cost)
+      @manager.subtract(@unit_type.transformation_cost)
     end
   end
 end
