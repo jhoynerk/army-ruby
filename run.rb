@@ -21,6 +21,7 @@ def info_screen(army)
   p "Oro: #{army.gold}"
   p "Victorias: #{army.winner_battle.to_s}"
   p "Derrotas: #{army.loser_battle.to_s}"
+  p "Numero de unidades: #{army.units.count}"
   p "#"*30
 end
 

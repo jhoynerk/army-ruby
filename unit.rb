@@ -8,11 +8,6 @@ class Unit
     calculate_points
   end
 
-
-#  scope :total_points {}
-#  scope :max_points -> (quantity) {}
-
-
   def sum_level(level)
     self.level_training += level
     save

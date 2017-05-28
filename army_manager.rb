@@ -1,5 +1,9 @@
 class ArmyManager
 
+  CHINESES = 'chineses'
+  ENGLISHS = 'englishs'
+  BYZANTINES = 'byzantines'
+
   UNIT_OPTION = {
                   piquero: { points: 5, training_points: 3, training_cost: 10 },
                   arquero: { points: 10, training_points: 7, training_cost:  20 },
@@ -8,9 +12,9 @@ class ArmyManager
 
   UNIT_DEFAULTS =
                 {
-                  chinos: { piquero: 2, arquero: 25, caballero: 2 },
-                  ingleses: { piquero: 10, arquero: 10, caballero: 10 },
-                  bizantinos: { piquero: 5, arquero: 8, caballero: 15 }
+                  "#{ArmyManager::CHINESES}": { piquero: 2, arquero: 25, caballero: 2 },
+                  "#{ArmyManager::ENGLISHS}": { piquero: 10, arquero: 10, caballero: 10 },
+                  "#{ArmyManager::BYZANTINES}": { piquero: 5, arquero: 8, caballero: 15 }
                 }
 
 
@@ -22,18 +26,15 @@ class ArmyManager
   end
 
   def create_chinese
-    civilization = 'chinos'
-    create_army(civilization)
+    create_army(ArmyManager::CHINESES)
   end
 
   def create_english
-    civilization = 'ingleses'
-    create_army(civilization)
+    create_army(ArmyManager::ENGLISHS)
   end
 
   def create_byzantine
-    civilization = 'bizantinos'
-    create_army(civilization)
+    create_army(ArmyManager::BYZANTINES)
   end
 
   private

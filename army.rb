@@ -1,11 +1,12 @@
 class Army
   attr_accessor :gold, :civilization, :units, :battles
+  DEFAULT_GOLD = 1000
 
   def initialize(civilization)
     @civilization = civilization
     @units = []
     @battles = []
-    default_ammount
+    @gold = Army::DEFAULT_GOLD
     setting
   end
 
@@ -14,7 +15,9 @@ class Army
   end
 
   def greater_subtract_unit( quantity )
-    #units.max_points(quantity).destroy
+    (1..quantity).each do |q|
+      destroy_unit
+    end
   end
 
   def attack( army )
@@ -36,6 +39,12 @@ class Army
   end
 
   private
+    def destroy_unit
+      unit = @units.max_by do |element|
+        element.current_points
+      end
+      @units.delete(unit)
+    end
 
     def setting
       @civilization.unit_settings.each do |setting|
@@ -43,9 +52,5 @@ class Army
           units << Unit.new(self, setting.unit_type)
         end
       end
-    end
-
-    def default_ammount
-      @gold = 1000
     end
 end

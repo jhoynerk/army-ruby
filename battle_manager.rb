@@ -37,7 +37,7 @@ class BattleManager
     end
 
     def subtract_unit(army, count = 2)
-      #army.greater_subtract_unit(count)
+      army.greater_subtract_unit(count)
     end
 
     def winner?
