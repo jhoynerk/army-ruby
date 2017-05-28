@@ -10,10 +10,15 @@ class Unit
 
   def sum_level(level)
     self.level_training += level
-    save
+    calculate_points
   end
 
   def calculate_points
     self.current_points = @unit_type.points + ( @unit_type.training_points * level_training )
+  end
+
+  def unit_transformation(unit_type)
+    self.unit_type = unit_type
+    calculate_points
   end
 end

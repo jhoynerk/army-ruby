@@ -1,19 +1,19 @@
 class UnitTrainer
 
   def initialize(army)
-    @manager = MoneyManager.new(army)
+    @manager = GoldManager.new(army)
   end
 
   def training(unit)
     @unit = unit
-    @type_unit = unit.type_unit
+    @unit_type = unit.unit_type
     train_unit
   end
 
   def train_unit
-    if @manager.available?(@type_unit.training_cost)
+    if @manager.available?(@unit_type.training_cost)
       @unit.sum_level(1)
-      @manager.subtract(@type_unit.training_cost)
+      @manager.subtract(@unit_type.training_cost)
     end
   end
 end

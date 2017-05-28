@@ -31,14 +31,25 @@ class Army
   end
 
   def winner_battle
-    @battles.inject(0){ |sum, b| sum + 1 if b.wars_won == self }
+    @battles.inject(0){ |sum, b| (b.wars_won == self) ? sum + 1 : sum }
   end
 
   def loser_battle
-    @battles.inject(0){ |sum, b| sum + 1 if b.wars_lost == self }
+    @battles.inject(0){ |sum, b| (b.wars_lost == self) ? sum + 1 : sum }
+  end
+
+  def find_unit(unit_type)
+    result = nil
+    @units.each do |unit|
+      if unit.unit_type.name.to_s ==  unit_type
+        return unit
+      end
+    end
+    result
   end
 
   private
+
     def destroy_unit
       unit = @units.max_by do |element|
         element.current_points

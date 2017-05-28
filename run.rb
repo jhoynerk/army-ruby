@@ -9,6 +9,7 @@ require_relative 'unit_trainer'
 require_relative 'unit_type'
 require_relative 'army_manager'
 require_relative 'emulator'
+require_relative 'unit_transformation'
 
 emulator = Emulator.new
 emulator.select_your_civilization
@@ -17,6 +18,7 @@ emulator.print_screen
 begin
 
   emulator.select_attack_civilization
+
   emulator.print_screen(emulator.armies.last)
   p "BATALLA # # " * 3
   emulator.my_army.attack(emulator.armies.last)
@@ -24,6 +26,8 @@ begin
   p "Resultados * * " * 3
   emulator.print_screen(emulator.my_army)
   emulator.print_screen(emulator.armies.last)
+  emulator.training
+  emulator.transformation
 
   p "Volver a luchar?"
   p "1. si"
