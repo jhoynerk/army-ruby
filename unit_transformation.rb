@@ -1,16 +1,6 @@
-class UnitTransformation
-  def initialize(army)
-    @manager = GoldManager.new(army)
-  end
+class UnitTransformation < UnitTool
 
-  def transformation(unit)
-    @unit = unit
-    @unit_type = unit.unit_type
-    transformation_unit
-    return @unit
-  end
-
-  def transformation_unit
+  def process_unit
     if @manager.available?(@unit_type.transformation_cost)
       @unit.unit_transformation(@unit_type.transformation)
       @manager.subtract(@unit_type.transformation_cost)

@@ -1,5 +1,5 @@
 class UnitType
-  attr_accessor :name, :points, :training_points, :training_cost, :units, :civilization, :transformation_cost, :transformation
+  attr_accessor :name, :points, :training_points, :training_cost, :transformation_cost, :transformation
 
   def initialize(name, points, training_points, training_cost, transformation_cost, transformation)
     @name = name
@@ -8,18 +8,6 @@ class UnitType
     @training_points = training_points
     @transformation_cost = transformation_cost
     @transformation = transformation
-  end
-
-  def add_unit(unit)
-    @units << unit
-  end
-
-  def remove_unit(unit)
-    @units.drop(unit)
-  end
-
-  def civilization(civilization)
-    @civilization = civilization
   end
 
 end

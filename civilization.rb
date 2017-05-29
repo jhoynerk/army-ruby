@@ -1,10 +1,9 @@
 class Civilization
-  attr_accessor :name, :unit_settings, :armies
+  attr_accessor :name, :unit_settings
 
-  def initialize(name, unit_settings, armies = nil)
+  def initialize(name, unit_settings)
     @name = name
     @unit_settings = unit_settings
-    @armies = armies
   end
 
 end

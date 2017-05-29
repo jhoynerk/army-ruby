@@ -42,7 +42,7 @@ class Emulator
     unit = @my_army.units.last
     p "Se va a entrenar tu: #{unit.unit_type.name} con puntos #{unit.current_points} y nivel #{unit.level_training} por un costo de #{unit.unit_type.training_cost}"
     p "Tu oro: #{@my_army.gold}"
-    UnitTrainer.new(@my_army).training(@my_army.units.last)
+    UnitTrainer.new(@my_army).run(@my_army.units.last)
     p "Finalizo el entrenamiento: #{unit.unit_type.name} con puntos #{unit.current_points} y nivel #{unit.level_training} "
     p "Tu oro: #{@my_army.gold}"
   end
@@ -59,7 +59,7 @@ class Emulator
       unless unit.nil?
         p "Se va a transformar tu: #{unit.unit_type.name} con puntos #{unit.current_points} y nivel #{unit.level_training} por un costo de #{unit.unit_type.transformation_cost}"
         p "Tu oro: #{@my_army.gold}"
-        unit = UnitTransformation.new(@my_army).transformation(unit)
+        unit = UnitTransformation.new(@my_army).run(unit)
         p "Se va transformo a: #{unit.unit_type.name} con puntos #{unit.current_points} y nivel #{unit.level_training}"
         p "Tu oro: #{@my_army.gold}"
       else
