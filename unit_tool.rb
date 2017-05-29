@@ -4,7 +4,7 @@ class UnitTool
     @manager = GoldManager.new(army)
   end
 
-  def run(unit)
+  def perform(unit)
     @unit = unit
     @unit_type = unit.unit_type
     process_unit
